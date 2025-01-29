@@ -9,5 +9,5 @@ ENV USER=postgres PASSWORD=root DBNAME=root
 
 COPY ./main main
 
-CMD ["./main", "-port", "8000"]
+CMD ["./main"]
 
