@@ -35,5 +35,5 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ctiagosantos/go_ci:${{ github.ref_name }}
+        tags: ctiagosantos/go_ci:${{ github.run_number }}
               
