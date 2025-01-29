@@ -38,4 +38,10 @@ jobs:
                 export DBPORT=${{ secrets.DBPORT }}
                 export PORT=8000
                 chmod +x main
+                echo $HOST
+                echo $USER
+                echo $PASSWORD
+                echo $DBNAME
+                echo $DBPORT
+                echo $PORT
                 env HOST=$HOST USER=$USER PASSWORD=$PASSWORD DBNAME=$DBNAME DBPORT=$DBPORT PORT=$PORT nohup ./main > nohup.out 2> nohup.err < /dev/null &
