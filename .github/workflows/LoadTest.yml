@@ -29,6 +29,7 @@ jobs:
       - run: terraform -chdir=Infra_CI/env/Homolog apply -auto-approve
       # obtem a saida do terraform que tem a url do Load Balancer
       - run: echo "$(terraform -chdir=Infra_CI/env/Homolog output -raw IP_alb)"
+        id: URL
 
       - name: Setup Python
       - uses: actions/setup-python@v5
@@ -51,5 +52,8 @@ jobs:
           echo "class WebsiteUser(HttpUser):" >> locustfile.py
           echo "	tasks = [UserTasks]" >> locustfile.py
           echo "	wait_time = between(1, 5)" >> locustfile.py
-            
+
+
+      - name: Roda Teste de carga
+        run: sleep 60s ; locust -f locustfile.py --headless -u 10 -r 5 --run-time 60s -H http://${{ steps.URL.outputs.stdout }}
         
