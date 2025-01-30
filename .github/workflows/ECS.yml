@@ -38,6 +38,20 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
+          task-definition: task-defifinition.json.old
+          service: Servico-Api-Go
+          cluster: API-Go
+          wait-for-service-stability: true
+
+      - name: Requisição
+        continue-on-error: true
+        run: echo "REQUEST=0" >> $GTIHUB_ENV ; sleep 30s ; wget LB-API-GO-1840098787.us-east-1.elb.amazonaws.com || echo "REQUEST=1" >> $GITHUB_ENV 
+
+
+      - name: Deploy Amazon ECS old task definition
+        if: ${{ env.REQUEST != 0 }}
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: Servico-Api-Go
           cluster: API-Go
