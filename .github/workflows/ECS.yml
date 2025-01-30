@@ -45,7 +45,7 @@ jobs:
 
       - name: Requisição
         continue-on-error: true
-        run: echo "REQUEST=0" >> $GTIHUB_ENV ; sleep 30s ; wget LB-API-GO-1840098787.us-east-1.elb.amazonaws.com || echo "REQUEST=1" >> $GITHUB_ENV 
+        run: echo "REQUEST=0" >> $GTIHUB_ENV ; sleep 30s ; wget LB-API-GO-595959284.us-east-1.elb.amazonaws.com || echo "REQUEST=1" >> $GITHUB_ENV 
 
 
       - name: Deploy Amazon ECS old task definition
