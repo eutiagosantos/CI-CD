@@ -16,7 +16,7 @@ jobs:
           aws-region: us-east-1
           
       - name: Obtendo arquivo da tarefa
-        run: aws ecs describe-task-definition --task-definition go --query taskDefinition > task-definition.json
+        run: aws ecs describe-task-definition --task-definition Go --query taskDefinition > task-definition.json
       
       - name: Copia do task definition
         run: cp task-definition.json task-definition.json.old
@@ -26,7 +26,7 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: go
+          container-name: Go
           image: ctiagosantos/go_ci:${{ github.run_number }}
           environment-variables: |
             HOST=${{ secrets.DBHOST }}
