@@ -38,7 +38,7 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition.json }}
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: Servico-Api-Go
           cluster: API-Go
           wait-for-service-stability: true
